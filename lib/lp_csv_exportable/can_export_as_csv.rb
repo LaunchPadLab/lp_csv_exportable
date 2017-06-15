@@ -1,6 +1,9 @@
 module LpCSVExportable
-  module CanExportAsCSV
+  class CanExportAsCSV
+    attr_reader :collection
+
     def initialize(args = {})
+      @collection = args[:collection]
       after_init(args)
     end
 
@@ -15,21 +18,15 @@ module LpCSVExportable
 
     private
 
-    # API METHODS
-
     def after_init(args = {})
       # hook
     end
 
     def columns
-      raise "columns method is required by CanExportAsCSV for #{self.class.name}"
+      self.class.columns_hashes.map do |hash|
+        CSVColumn.new(hash)
+      end
     end
-
-    def collection
-      raise "collection method is required by CanExportAsCSV for #{self.class.name}"
-    end
-
-    # DEFAULT BEHAVIOR
 
     def headers
       columns.map(&:header)
@@ -61,6 +58,16 @@ module LpCSVExportable
       else
         memo.try(:send, model_method)
       end
+    end
+
+    # Configuration...
+
+    def self.column(header, options = {})
+      columns_hashes << { header: header }.merge(options)
+    end
+
+    def self.columns_hashes
+      @columns_hashes ||= []
     end
   end
 end
