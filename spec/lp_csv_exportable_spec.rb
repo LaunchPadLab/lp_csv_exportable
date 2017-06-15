@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-RSpec.describe LpCsvExportable do
+RSpec.describe LpCSVExportable do
   it 'has a version number' do
-    expect(LpCsvExportable::VERSION).not_to be nil
+    expect(LpCSVExportable::VERSION).not_to be nil
   end
 
   it 'does something useful' do

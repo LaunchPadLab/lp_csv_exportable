@@ -5,7 +5,7 @@ require 'lp_csv_exportable/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'lp_csv_exportable'
-  spec.version       = LpCsvExportable::VERSION
+  spec.version       = LpCSVExportable::VERSION
   spec.authors       = ['Ryan Francis']
   spec.email         = ['ryan.p.francis@gmail.com']
 

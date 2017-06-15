@@ -1,7 +1,7 @@
 require 'lp_csv_exportable/version'
 require 'csv'
 
-module LpCsvExportable
+module LpCSVExportable
 end
 
 require 'lp_csv_exportable/csv_column'

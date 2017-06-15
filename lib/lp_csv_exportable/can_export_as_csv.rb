@@ -1,4 +1,4 @@
-module LpCsvExportable
+module LpCSVExportable
   module CanExportAsCSV
     def initialize(args = {})
       after_init(args)

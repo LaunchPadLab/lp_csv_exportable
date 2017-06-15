@@ -1,4 +1,4 @@
-module LpCsvExportable
+module LpCSVExportable
   class CSVColumn
     attr_reader :header, :model_method, :model_methods, :type
 
