@@ -1,6 +1,10 @@
 module LpCSVExportable
-  class CanExportAsCSV
+  module CanExportAsCSV
     attr_reader :collection
+
+    def self.included(base)
+      base.extend ClassMethods
+    end
 
     def initialize(args = {})
       @collection = args[:collection]
@@ -61,13 +65,14 @@ module LpCSVExportable
     end
 
     # Configuration...
+    module ClassMethods
+      def column(header, options = {})
+        columns_hashes << { header: header }.merge(options)
+      end
 
-    def self.column(header, options = {})
-      columns_hashes << { header: header }.merge(options)
-    end
-
-    def self.columns_hashes
-      @columns_hashes ||= []
+      def columns_hashes
+        @columns_hashes ||= []
+      end
     end
   end
 end
