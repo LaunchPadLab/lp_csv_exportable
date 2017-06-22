@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'lp_csv_exportable'
   spec.version       = LpCSVExportable::VERSION
   spec.authors       = ['Ryan Francis']
-  spec.email         = ['ryan.p.francis@gmail.com']
+  spec.email         = ['ryan@launchpadlab.com']
 
   spec.summary       = %q{Easily export data to CSV}
   spec.description   = %q{Export from your Rails app to CSV in no time.}
