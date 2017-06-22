@@ -1,14 +1,9 @@
 module LpCSVExportable
   module CanExportAsCSV
-    attr_reader :collection
+    attr_accessor :collection
 
     def self.included(base)
       base.extend ClassMethods
-    end
-
-    def initialize(args = {})
-      @collection = args[:collection]
-      after_init(args)
     end
 
     def to_csv
@@ -21,10 +16,6 @@ module LpCSVExportable
     end
 
     private
-
-    def after_init(args = {})
-      # hook
-    end
 
     def columns
       self.class.columns_hashes.map do |hash|
@@ -62,6 +53,12 @@ module LpCSVExportable
       else
         memo.try(:send, model_method)
       end
+    end
+
+    def collection
+      raise 'collection has not been set on the class' unless @collection
+      raise 'collection must respond to map method' unless @collection.respond_to?(:map)
+      @collection
     end
 
     # Configuration...

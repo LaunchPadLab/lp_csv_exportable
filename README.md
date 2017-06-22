@@ -41,7 +41,8 @@ And then to export, simply instantiate your class and pass in your `collection`,
 
     respond_to do |format|
       format.csv do
-        export = ExportUsers.new(collection: attendees)
+        export = ExportUsers.new
+        export.collection = users
         send_data export.to_csv
       end
     end
