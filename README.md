@@ -73,13 +73,13 @@ column :first_name
 
 You can also chain methods by using `model_methods` like so:
 
-```
+```ruby
 column 'First Name', model_methods: [:names, :first]
 ```
 
 Finally, you can use custom methods on your Export class like so:
 
-```
+```ruby
 class ExportUsers
   include LpCSVExportable::CanExportAsCSV
 
