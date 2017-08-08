@@ -28,8 +28,9 @@ module LpCSVExportable
     end
 
     def formatted_result(result)
-      return default_value if use_default?(result)
-      send(type, result)
+      formatted = send(type, result)
+      return default_value if use_default?(formatted)
+      formatted
     end
   end
 end
