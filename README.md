@@ -49,6 +49,12 @@ And then to export, simply instantiate your class and pass in your `collection`,
   end
 ```
 
+If you would like to default a column to a specific value if the model method returns `nil`, use the `default_value` key when defining the column.
+
+```
+column 'Email', model_method: :email, default_value: 'N/A'
+```
+
 TODO
 ---
 

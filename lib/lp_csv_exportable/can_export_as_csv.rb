@@ -51,7 +51,7 @@ module LpCSVExportable
       if respond_to?(model_method)
         send(model_method, memo)
       else
-        memo.try(:send, model_method)
+        memo.try(model_method)
       end
     end
 
