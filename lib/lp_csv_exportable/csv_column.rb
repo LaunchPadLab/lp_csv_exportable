@@ -12,8 +12,8 @@ module LpCSVExportable
     end
 
     def format(result)
-      return send(type, result) if respond_to?(type)
-      return default_value if result.nil? && default_value.present?
+      return formatted_result(result) if respond_to?(type)
+      return default_value if use_default?(result)
       result
     end
 
@@ -21,6 +21,15 @@ module LpCSVExportable
 
     def after_init(args = {})
       # hook for subclasses
+    end
+
+    def use_default?(result)
+      default_value.present? && result.nil?
+    end
+
+    def formatted_result(result)
+      return default_value if use_default?(result)
+      send(type, result)
     end
   end
 end
