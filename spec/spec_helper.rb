@@ -1,5 +1,7 @@
 require 'bundler/setup'
 require 'lp_csv_exportable'
+require 'factories/test_exporter'
+require 'factories/test_user'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

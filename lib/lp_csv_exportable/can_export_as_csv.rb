@@ -1,6 +1,6 @@
 module LpCSVExportable
   module CanExportAsCSV
-    attr_accessor :collection
+    attr_accessor :collection, :column_class
 
     def self.included(base)
       base.extend ClassMethods
@@ -17,14 +17,18 @@ module LpCSVExportable
 
     private
 
+    def column_class
+      @column_class ||= CSVColumn
+    end
+
     def columns
       self.class.columns_hashes.map do |hash|
-        CSVColumn.new(hash)
+        column_class.new(hash)
       end
     end
 
     def headers
-      columns.map(&:header)
+      columns.map { |c| c.header.try(:to_s) }
     end
 
     def data_matrix
@@ -64,7 +68,9 @@ module LpCSVExportable
     # Configuration...
     module ClassMethods
       def column(header, options = {})
-        columns_hashes << { header: header }.merge(options)
+        column_settings = { header: header }
+        column_settings[:model_method] = header if header.is_a?(Symbol) && options[:model_methods].nil?
+        columns_hashes << column_settings.merge(options)
       end
 
       def columns_hashes

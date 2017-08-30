@@ -1,3 +1,3 @@
 module LpCSVExportable
-  VERSION = '0.2.6'.freeze
+  VERSION = '0.2.8'.freeze
 end
