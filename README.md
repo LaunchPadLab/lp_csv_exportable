@@ -51,7 +51,6 @@ And then to export, simply instantiate your class and pass in your `collection`,
   end
 ```
 
-<<<<<<< HEAD
 The Column Method
 ---
 
