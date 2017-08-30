@@ -29,9 +29,11 @@ class ExportUsers
   column :first_name
   column :last_name
   column :email
-  column :role, model_methods: %i[membership name]
+  column 'User Role', model_methods: %i[membership name]
 end
 ```
+
+Note: the header argument can be either a symbol or a string.
 
 And then to export, simply instantiate your class and pass in your `collection`, then call `to_csv`. For example, in a Rails controller action, you would do:
 
